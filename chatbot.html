@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeakEasy - AI Language Tutor (Japanese)</title>
+    
+    <!-- Botpress Webchat -->
+    <script src="https://cdn.botpress.cloud/webchat/v3.5/inject.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #3b82f6 0%, #f0f9ff 50%, #fb923c 100%);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            background: white;
+            color: #2563eb;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .back-btn {
+            background: white;
+            color: #2563eb;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .chat-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        #webchat {
+            width: 100%;
+            max-width: 900px;
+            height: 85vh;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        #webchat .bpWebchat {
+            position: unset;
+            width: 100%;
+            height: 100%;
+            max-height: 100%;
+            max-width: 100%;
+        }
+
+        #webchat .bpFab {
+            display: none;
+        }
+
+        .welcome-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 1;
+        }
+
+        .welcome-message h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-message p {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">말</div>
+            <span>SPEAK<strong>EASY</strong></span>
+        </div>
+        <a href="website.html" class="back-btn">← Back to Home</a>
+    </div>
+
+    <div class="chat-container">
+        <div id="webchat"></div>
+    </div>
+
+    <script>
+      window.botpress.init({
+        "botId": "803a0e28-8cd8-48f8-9508-70d9bdce8572",
+        "configuration": {
+          "version": "v2",
+          "botName": "SpeakEasy AI Tutor [JPN]" ,
+          "botAvatar": "https://files.bpcontent.cloud/2026/01/09/04/20260109045633-YV2B8D6K.png",
+          "botDescription": "Your personal language learning assistant",
+          "website": {},
+          "email": {},
+          "phone": {},
+          "termsOfService": {},
+          "privacyPolicy": {},
+          "color": "#fb923c",
+          "variant": "solid",
+          "headerVariant": "solid",
+          "themeMode": "light",
+          "fontFamily": "inter",
+          "radius": 0.8,
+          "feedbackEnabled": true,
+          "footer": "",
+          "soundEnabled": true,
+          "proactiveMessageEnabled": false
+        },
+        "clientId": "506ef745-dd88-4134-954f-4b48398aafc1",
+        "selector": "#webchat"
+      });
+
+      // Auto-open the chatbot
+      window.botpress.on("webchat:ready", () => {
+        window.botpress.open();
+      });
+    </script>
+</body>
+</html>
