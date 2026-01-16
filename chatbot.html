@@ -17,20 +17,24 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #3b82f6 0%, #f0f9ff 50%, #fb923c 100%);
+            background: linear-gradient(-45deg, #3b82f6, #6366f1, #fb923c, #f0f9ff);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             height: 100vh;
             display: flex;
             flex-direction: column;
+            position: relative;
+            overflow: hidden;
         }
 
-        .header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
         }
 
         .logo {
@@ -40,49 +44,7 @@
             color: white;
             font-size: 24px;
             font-weight: 700;
-        }
-
-        .logo-icon {
-            background: white;
-            color: #2563eb;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-
-        .back-btn {
-            background: white;
-            color: #2563eb;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s;
-        }
-
-        .back-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .chat-container {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        #webchat {
-            width: 100%;
-            max-width: 900px;
-            height: 85vh;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         #webchat .bpWebchat {
@@ -97,28 +59,204 @@
             display: none;
         }
 
-        .welcome-message {
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .particle {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: white;
-            z-index: 1;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.3);
+            animation: float linear infinite;
         }
 
-        .welcome-message h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
         }
 
-        .welcome-message p {
+        .particle:nth-child(1) { left: 10%; animation-duration: 20s; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-duration: 18s; animation-delay: 2s; font-size: 30px; }
+        .particle:nth-child(3) { left: 30%; animation-duration: 22s; animation-delay: 4s; }
+        .particle:nth-child(4) { left: 40%; animation-duration: 19s; animation-delay: 1s; font-size: 28px; }
+        .particle:nth-child(5) { left: 50%; animation-duration: 21s; animation-delay: 3s; }
+        .particle:nth-child(6) { left: 60%; animation-duration: 17s; animation-delay: 5s; font-size: 26px; }
+        .particle:nth-child(7) { left: 70%; animation-duration: 23s; animation-delay: 2s; }
+        .particle:nth-child(8) { left: 80%; animation-duration: 20s; animation-delay: 4s; font-size: 32px; }
+        .particle:nth-child(9) { left: 90%; animation-duration: 18s; animation-delay: 1s; }
+        .particle:nth-child(10) { left: 15%; animation-duration: 24s; animation-delay: 3s; font-size: 27px; }
+
+        /* Decorative circles */
+        .decorative-circle {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            top: -100px;
+            right: -100px;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            background: rgba(251, 146, 60, 0.15);
+            bottom: 100px;
+            left: -50px;
+            animation: pulse 6s ease-in-out infinite 1s;
+        }
+
+        .circle-3 {
+            width: 150px;
+            height: 150px;
+            background: rgba(99, 102, 241, 0.2);
+            top: 40%;
+            right: 5%;
+            animation: pulse 7s ease-in-out infinite 2s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.5; }
+        }
+
+        /* Grid pattern overlay */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        /* Enhanced header with glow */
+        .header {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 100;
+        }
+
+        /* Logo icon glow effect */
+        .logo-icon {
+            background: white;
+            color: #2563eb;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 20px;
-            opacity: 0.9;
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+            animation: iconGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes iconGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(37, 99, 235, 0.6); }
+        }
+
+        /* Enhanced back button */
+        .back-btn {
+            background: white;
+            color: #2563eb;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Enhanced chat container */
+        .chat-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Enhanced webchat with glow */
+        #webchat {
+            width: 100%;
+            max-width: 900px;
+            height: 85vh;
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(59, 130, 246, 0.2),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: chatGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes chatGlow {
+            0%, 100% { box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(59, 130, 246, 0.2); }
+            50% { box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 60px rgba(251, 146, 60, 0.3); }
         }
     </style>
 </head>
 <body>
+    <div class="grid-overlay"></div>
+    <div class="decorative-circle circle-1"></div>
+    <div class="decorative-circle circle-2"></div>
+    <div class="decorative-circle circle-3"></div>
+    
+    <div class="particles">
+        <div class="particle">あ</div>
+        <div class="particle">か</div>
+        <div class="particle">さ</div>
+        <div class="particle">た</div>
+        <div class="particle">な</div>
+        <div class="particle">は</div>
+        <div class="particle">ま</div>
+        <div class="particle">や</div>
+        <div class="particle">ら</div>
+        <div class="particle">わ</div>
+    </div>
     <div class="header">
         <div class="logo">
             <div class="logo-icon">말</div>
